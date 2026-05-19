@@ -22,6 +22,27 @@ of the user's interactive `sl7` shell function + the per-experiment
 - Run a unit test binary: `… in-gpvm-sl7.sh build/util/test_<foo>`
 - Inspect environment: `… in-gpvm-sl7.sh bash -c 'which wcb; echo $CMAKE_PREFIX_PATH'`
 
+## Fresh clone + configure + build
+
+`/exp/sbnd/app/users/yuhw/claude-utilities/build-wct.sh` clones
+wire-cell-toolkit fresh, checks out a ref/PR (or merges a PR into a base
+ref), runs `./wcb configure` with all dependency paths from the sourced
+environment (`$TBBROOT`, `$ROOTSYS`, `$BOOST_*`, `$HDF5_FQ_DIR`,
+`$LIBTORCH_FQ_DIR`, …), and builds + installs. Must be invoked through
+the SL7 wrapper so those vars are populated.
+
+Usage: `build-wct.sh <ref|pr|merge-pr> <tag|master|PR#> <src_dir> <install_dir> [base_ref]`
+
+- Build a tag/master:
+  `… in-gpvm-sl7.sh /exp/sbnd/app/users/yuhw/claude-utilities/build-wct.sh ref master ~/wct/src ~/wct/install`
+- Build a PR head as-is:
+  `… in-gpvm-sl7.sh …/build-wct.sh pr 1234 ~/wct/src ~/wct/install`
+- Build a PR merged into a base ref:
+  `… in-gpvm-sl7.sh …/build-wct.sh merge-pr 1234 ~/wct/src ~/wct/install master`
+
+Existing `<src_dir>` is removed before cloning. Build log is written to
+`<src_dir>/build.log`.
+
 ## Environment source of truth
 
 - Image: `/cvmfs/singularity.opensciencegrid.org/fermilab/fnal-dev-sl7:latest`
