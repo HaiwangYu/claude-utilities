@@ -67,3 +67,5 @@ reference:
 Use this when you need a fast "did memory grow / where did CPU go" view of a
 running build or test; reach for `perf`/`valgrind massif` only when you need
 finer attribution.
+
+## Hints to compile larwirecell
