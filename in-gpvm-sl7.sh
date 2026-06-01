@@ -19,7 +19,7 @@ WCT=/exp/${CURRENT_EXPERIMENT}/app/users/yuhw/wire-cell-toolkit
 APPTAINER=/cvmfs/oasis.opensciencegrid.org/mis/apptainer/current/bin/apptainer
 
 exec "$APPTAINER" exec --ipc --pid \
-    -B /cvmfs,/exp,/nashome,/opt,/run/user,/etc/hostname,/etc/hosts,/etc/krb5.conf \
+    -B /cvmfs,/exp,/nashome,/opt,/pnfs,/run/user,/etc/hostname,/etc/hosts,/etc/krb5.conf \
     "$IMG" \
     /bin/bash -c "source '$SETUP' >/dev/null 2>&1 || true; cd '$WCT' && \"\$@\"" \
     _ "$@"
